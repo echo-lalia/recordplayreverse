@@ -1,0 +1,92 @@
+extends AudioStreamPlayer
+class_name AudioRecorder
+
+
+var effect: AudioEffectRecord
+var recording: AudioStreamWAV
+var reversed_recording: AudioStreamWAV
+
+
+@export var record_button: Button
+@export var play_button: Button
+@export var reverse_button: Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	finished.connect(stop_playback)
+	# We get the index of the "Record" bus.
+	var idx = AudioServer.get_bus_index("Record")
+	# And use it to retrieve its first effect, which has been defined
+	# as an "AudioEffectRecord" resource.
+	effect = AudioServer.get_bus_effect(idx, 0)
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func stop_playback() -> void:
+	if playing:
+		playing = false
+	record_button.disabled = false
+	play_button.disabled = false
+	reverse_button.disabled = false
+	play_button.text = "Play Forward"
+	reverse_button.text = "Play Reverse"
+
+
+func _on_record_button_pressed() -> void:
+	if effect.is_recording_active():
+		recording = effect.get_recording()
+		reversed_recording = null
+		play_button.disabled = false
+		reverse_button.disabled = false
+		effect.set_recording_active(false)
+		record_button.text = "Record"
+	else:
+		play_button.disabled = true
+		reverse_button.disabled = true
+		effect.set_recording_active(true)
+		record_button.text = "Stop"
+
+
+func _on_play_button_pressed() -> void:
+	if playing:
+		return stop_playback()
+	record_button.disabled = true
+	play_button.disabled = false
+	reverse_button.disabled = true
+	play_button.text = "Stop"
+
+	print(recording)
+	print(recording.format)
+	print(recording.mix_rate)
+	print(recording.stereo)
+	
+	var data = recording.get_data()
+	print(data.size())
+	stream = recording
+	play()
+
+
+func _on_play_reverse_button_pressed() -> void:
+	if playing:
+		return stop_playback()
+	record_button.disabled = true
+	play_button.disabled = true
+	reverse_button.disabled = false
+	reverse_button.text = "Stop"
+
+	if reversed_recording == null:
+		# Create a reverse of the recording
+		var data: PackedByteArray = recording.get_data()
+		var new_data: PackedByteArray = data.duplicate()
+		new_data.reverse()
+		reversed_recording = recording.duplicate(true)
+		reversed_recording.data = new_data
+
+	stream = reversed_recording
+	play()

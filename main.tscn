@@ -1,0 +1,149 @@
+[gd_scene load_steps=15 format=3 uid="uid://cjvvrdc71yj5w"]
+
+[ext_resource type="Script" uid="uid://chlm4ij704ibk" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cotjfei6jvq65" path="res://audio_recorder.gd" id="1_ig7tw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c57u"]
+bg_color = Color(0.29, 0.372167, 0.58, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
+bg_color = Color(0.312, 0.402133, 0.65, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+bg_color = Color(0.3072, 0.395947, 0.64, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
+bg_color = Color(0.294118, 0.380392, 0.607843, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+bg_color = Color(0.253, 0.3322, 0.55, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="Theme" id="Theme_0xm2m"]
+Button/colors/font_color = Color(0.97, 0.97, 0.97, 1)
+Button/colors/font_disabled_color = Color(0.62, 0.62, 0.62, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 12
+Button/font_sizes/font_size = 60
+Button/styles/disabled = SubResource("StyleBoxFlat_4c57u")
+Button/styles/focus = SubResource("StyleBoxFlat_kek77")
+Button/styles/hover = SubResource("StyleBoxFlat_5vw27")
+Button/styles/normal = SubResource("StyleBoxFlat_7mycd")
+Button/styles/pressed = SubResource("StyleBoxFlat_272bh")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.7, 0.189, 0.189, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0.64, 0.1344, 0.1344, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(0.72, 0.18, 0.18, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+bg_color = Color(0.67, 0.1876, 0.1876, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
+bg_color = Color(0.7, 0.21, 0.21, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_0xm2m"]
+
+[node name="ColorRect" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.204059, 0.159624, 0.175998, 1)
+
+[node name="Main" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.06
+anchor_right = 0.94
+anchor_bottom = 0.94
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0xm2m")
+theme_override_constants/separation = 30
+script = ExtResource("1_0xm2m")
+
+[node name="Recorder" type="AudioStreamPlayer" parent="Main" node_paths=PackedStringArray("record_button", "play_button", "reverse_button")]
+script = ExtResource("1_ig7tw")
+record_button = NodePath("../RecordButton")
+play_button = NodePath("../PlayButton")
+reverse_button = NodePath("../PlayReverseButton")
+
+[node name="RecordButton" type="Button" parent="Main"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxFlat_lquwl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_1bvp3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0xm2m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h2yge")
+theme_override_styles/normal = SubResource("StyleBoxFlat_efxa6")
+text = "Record"
+
+[node name="PlayButton" type="Button" parent="Main"]
+layout_mode = 2
+size_flags_vertical = 3
+disabled = true
+text = "Play Forward"
+
+[node name="PlayReverseButton" type="Button" parent="Main"]
+layout_mode = 2
+size_flags_vertical = 3
+disabled = true
+text = "Play Reverse"
+
+[node name="MicInput" type="AudioStreamPlayer" parent="Main"]
+stream = SubResource("AudioStreamMicrophone_0xm2m")
+autoplay = true
+bus = &"Record"
+
+[connection signal="pressed" from="Main/RecordButton" to="Main/Recorder" method="_on_record_button_pressed"]
+[connection signal="pressed" from="Main/PlayButton" to="Main/Recorder" method="_on_play_button_pressed"]
+[connection signal="pressed" from="Main/PlayReverseButton" to="Main/Recorder" method="_on_play_reverse_button_pressed"]
