@@ -12,12 +12,18 @@ config_version=5
 
 config/name="RecordReverse"
 run/main_scene="uid://cjvvrdc71yj5w"
-config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.5", "Mobile")
+boot_splash/bg_color=Color(0.20392157, 0.16078432, 0.1764706, 1)
+boot_splash/image="uid://dnqydy7b5pmrg"
+config/icon="uid://lxmq5rakxuo5"
 
 [audio]
 
 driver/enable_input=true
+
+[debug]
+
+settings/stdout/verbose_stdout=true
 
 [display]
 

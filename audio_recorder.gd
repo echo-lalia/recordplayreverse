@@ -2,7 +2,15 @@ extends AudioStreamPlayer
 class_name AudioRecorder
 
 
-var effect: AudioEffectRecord
+## Virtual helper to access the AudioEffectRecord.
+var audio_effect: AudioEffectRecord:
+	get:
+		return AudioServer.get_bus_effect(AudioServer.get_bus_index("Record"), 0)
+	set(val):
+		AudioServer.remove_bus_effect(AudioServer.get_bus_index("Record"), 0)
+		AudioServer.add_bus_effect(AudioServer.get_bus_index("Record"), val)
+
+
 var recording: AudioStreamWAV
 var reversed_recording: AudioStreamWAV
 
@@ -10,22 +18,21 @@ var reversed_recording: AudioStreamWAV
 @export var record_button: Button
 @export var play_button: Button
 @export var reverse_button: Button
+@export var mic_input: AudioStreamPlayer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	finished.connect(stop_playback)
-	# We get the index of the "Record" bus.
-	var idx = AudioServer.get_bus_index("Record")
-	# And use it to retrieve its first effect, which has been defined
-	# as an "AudioEffectRecord" resource.
-	effect = AudioServer.get_bus_effect(idx, 0)
+	mic_input.finished.connect(restart_mic_input)
 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+## Restarts on broken mic input, if needed.
+func restart_mic_input() -> void:
+	if not mic_input.playing:
+		Utils.show_toast("Microphone input stopped. Restarting...")
+		push_warning("Microphone input stopped. Restarting...")
+		get_tree().reload_current_scene()
 
 
 func stop_playback() -> void:
@@ -39,17 +46,17 @@ func stop_playback() -> void:
 
 
 func _on_record_button_pressed() -> void:
-	if effect.is_recording_active():
-		recording = effect.get_recording()
+	if audio_effect.is_recording_active():
+		recording = audio_effect.get_recording()
 		reversed_recording = null
 		play_button.disabled = false
 		reverse_button.disabled = false
-		effect.set_recording_active(false)
+		audio_effect.set_recording_active(false)
 		record_button.text = "Record"
 	else:
 		play_button.disabled = true
 		reverse_button.disabled = true
-		effect.set_recording_active(true)
+		audio_effect.set_recording_active(true)
 		record_button.text = "Stop"
 
 
@@ -60,11 +67,6 @@ func _on_play_button_pressed() -> void:
 	play_button.disabled = false
 	reverse_button.disabled = true
 	play_button.text = "Stop"
-
-	print(recording)
-	print(recording.format)
-	print(recording.mix_rate)
-	print(recording.stereo)
 	
 	var data = recording.get_data()
 	print(data.size())

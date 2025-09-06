@@ -53,22 +53,8 @@ Button/styles/hover = SubResource("StyleBoxFlat_5vw27")
 Button/styles/normal = SubResource("StyleBoxFlat_7mycd")
 Button/styles/pressed = SubResource("StyleBoxFlat_272bh")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
-bg_color = Color(0.7, 0.189, 0.189, 1)
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
-bg_color = Color(0.64, 0.1344, 0.1344, 1)
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
-bg_color = Color(0.72, 0.18, 0.18, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
+bg_color = Color(0.7, 0.21, 0.21, 1)
 corner_radius_top_left = 60
 corner_radius_top_right = 60
 corner_radius_bottom_right = 60
@@ -81,8 +67,22 @@ corner_radius_top_right = 60
 corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
-bg_color = Color(0.7, 0.21, 0.21, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(0.72, 0.18, 0.18, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0.64, 0.1344, 0.1344, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.7, 0.189, 0.189, 1)
 corner_radius_top_left = 60
 corner_radius_top_right = 60
 corner_radius_bottom_right = 60
@@ -111,20 +111,21 @@ theme = SubResource("Theme_0xm2m")
 theme_override_constants/separation = 30
 script = ExtResource("1_0xm2m")
 
-[node name="Recorder" type="AudioStreamPlayer" parent="Main" node_paths=PackedStringArray("record_button", "play_button", "reverse_button")]
+[node name="Recorder" type="AudioStreamPlayer" parent="Main" node_paths=PackedStringArray("record_button", "play_button", "reverse_button", "mic_input")]
 script = ExtResource("1_ig7tw")
 record_button = NodePath("../RecordButton")
 play_button = NodePath("../PlayButton")
 reverse_button = NodePath("../PlayReverseButton")
+mic_input = NodePath("../MicInput")
 
 [node name="RecordButton" type="Button" parent="Main"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/focus = SubResource("StyleBoxFlat_lquwl")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_1bvp3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0xm2m")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_h2yge")
 theme_override_styles/normal = SubResource("StyleBoxFlat_efxa6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h2yge")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0xm2m")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_1bvp3")
+theme_override_styles/focus = SubResource("StyleBoxFlat_lquwl")
 text = "Record"
 
 [node name="PlayButton" type="Button" parent="Main"]
