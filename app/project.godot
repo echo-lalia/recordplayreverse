@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Record Play Reverse"
-config/version="0.1"
+config/version="1.2"
 run/main_scene="uid://cjvvrdc71yj5w"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/bg_color=Color(0.20392157, 0.16078432, 0.1764706, 1)
