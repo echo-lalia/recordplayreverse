@@ -74,6 +74,15 @@ func _on_play_button_pressed() -> void:
 	play()
 
 
+func _create_reversed_recording() -> void:
+	# Create a reverse of the recording
+	var data: PackedByteArray = recording.get_data()
+	var new_data: PackedByteArray = data.duplicate()
+	new_data.reverse()
+	reversed_recording = recording.duplicate(true)
+	reversed_recording.data = new_data
+
+
 func _on_play_reverse_button_pressed() -> void:
 	if playing:
 		return stop_playback()
@@ -83,12 +92,7 @@ func _on_play_reverse_button_pressed() -> void:
 	reverse_button.text = "Stop"
 
 	if reversed_recording == null:
-		# Create a reverse of the recording
-		var data: PackedByteArray = recording.get_data()
-		var new_data: PackedByteArray = data.duplicate()
-		new_data.reverse()
-		reversed_recording = recording.duplicate(true)
-		reversed_recording.data = new_data
+		_create_reversed_recording()
 
 	stream = reversed_recording
 	play()

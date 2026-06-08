@@ -18,6 +18,11 @@ static func show_toast(msg: String) -> void:
 		printerr("Unable to access android runtime")
 
 
+static func get_simple_timestr() -> String:
+	return Time.get_datetime_string_from_system().replace(":", "-")
+	
+
+
 ### Reverse the bytes in 2byte pairs (for 16 bit data).
 #static func bytes_reversed_16bit(arr: PackedByteArray) -> PackedByteArray:
 	#var reversed: PackedByteArray = arr.duplicate()

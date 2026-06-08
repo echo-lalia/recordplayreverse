@@ -1,57 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjvvrdc71yj5w"]
+[gd_scene load_steps=21 format=3 uid="uid://cjvvrdc71yj5w"]
 
 [ext_resource type="Script" uid="uid://chlm4ij704ibk" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Theme" uid="uid://bg8ocffg14lxr" path="res://base_theme.tres" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://cotjfei6jvq65" path="res://audio_recorder.gd" id="1_ig7tw"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c57u"]
-bg_color = Color(0.29, 0.372167, 0.58, 1)
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
-bg_color = Color(0.312, 0.402133, 0.65, 1)
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
-bg_color = Color(0.3072, 0.395947, 0.64, 1)
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
-bg_color = Color(0.294118, 0.380392, 0.607843, 1)
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
-bg_color = Color(0.253, 0.3322, 0.55, 1)
-corner_radius_top_left = 60
-corner_radius_top_right = 60
-corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
-
-[sub_resource type="Theme" id="Theme_0xm2m"]
-Button/colors/font_color = Color(0.97, 0.97, 0.97, 1)
-Button/colors/font_disabled_color = Color(0.62, 0.62, 0.62, 1)
-Button/colors/font_focus_color = Color(1, 1, 1, 1)
-Button/colors/font_hover_color = Color(1, 1, 1, 1)
-Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/constants/outline_size = 12
-Button/font_sizes/font_size = 60
-Button/styles/disabled = SubResource("StyleBoxFlat_4c57u")
-Button/styles/focus = SubResource("StyleBoxFlat_kek77")
-Button/styles/hover = SubResource("StyleBoxFlat_5vw27")
-Button/styles/normal = SubResource("StyleBoxFlat_7mycd")
-Button/styles/pressed = SubResource("StyleBoxFlat_272bh")
+[ext_resource type="Texture2D" uid="uid://b8uqqnowytftk" path="res://floppy.svg" id="4_1bvp3"]
+[ext_resource type="Theme" uid="uid://b5c1f8ssb74s8" path="res://smaller_theme.tres" id="4_5vw27"]
+[ext_resource type="Texture2D" uid="uid://b0b37sbhvvk2m" path="res://info.svg" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://cbpfdywi5v2si" path="res://export_button.gd" id="6_5vw27"]
+[ext_resource type="Script" uid="uid://cylsjosgyygc3" path="res://export_ui.gd" id="7_272bh"]
+[ext_resource type="Script" uid="uid://bytyqvbyoh6dl" path="res://info_button.gd" id="8_kek77"]
+[ext_resource type="Script" uid="uid://dvuyk0jagmgrx" path="res://info_ui.gd" id="10_4c57u"]
+[ext_resource type="Theme" uid="uid://dd5grs0ecmh6x" path="res://export_button_theme.tres" id="10_efxa6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
 bg_color = Color(0.7, 0.21, 0.21, 1)
@@ -90,6 +49,23 @@ corner_radius_bottom_left = 60
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_0xm2m"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_0xm2m"]
+color = Color(0.2901961, 0.24705882, 0.32156864, 1)
+grow_begin = -60.0
+grow_end = -60.0
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5vw27"]
+color = Color(0.2901961, 0.24705882, 0.32156864, 1)
+grow_begin = -64.0
+grow_end = -64.0
+thickness = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_4c57u"]
+font_size = 18
+font_color = Color(0.6292305, 0.5966487, 0.6870761, 1)
+outline_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+
 [node name="ColorRect" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,18 +74,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.204059, 0.159624, 0.175998, 1)
 
-[node name="Main" type="VBoxContainer" parent="."]
+[node name="Main" type="VBoxContainer" parent="." node_paths=PackedStringArray("uis_to_hide")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.06
-anchor_top = 0.06
+anchor_top = 0.03
 anchor_right = 0.94
-anchor_bottom = 0.94
+anchor_bottom = 0.97
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_0xm2m")
+theme = ExtResource("1_7mycd")
 theme_override_constants/separation = 30
 script = ExtResource("1_0xm2m")
+uis_to_hide = [NodePath("../ExportUI"), NodePath("../InfoUI")]
 
 [node name="Recorder" type="AudioStreamPlayer" parent="Main" node_paths=PackedStringArray("record_button", "play_button", "reverse_button", "mic_input")]
 script = ExtResource("1_ig7tw")
@@ -145,6 +122,171 @@ stream = SubResource("AudioStreamMicrophone_0xm2m")
 autoplay = true
 bus = &"Record"
 
+[node name="HSeparator" type="HSeparator" parent="Main"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_0xm2m")
+
+[node name="MarginContainer" type="MarginContainer" parent="Main"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="BottomBar" type="HBoxContainer" parent="Main/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("4_5vw27")
+alignment = 1
+
+[node name="ExportButton" type="Button" parent="Main/MarginContainer/BottomBar" node_paths=PackedStringArray("export_ui")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Export"
+icon = ExtResource("4_1bvp3")
+expand_icon = true
+script = ExtResource("6_5vw27")
+export_ui = NodePath("../../../../ExportUI")
+
+[node name="InfoButton" type="Button" parent="Main/MarginContainer/BottomBar" node_paths=PackedStringArray("info_ui")]
+custom_minimum_size = Vector2(150.995, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Info"
+icon = ExtResource("5_lquwl")
+expand_icon = true
+script = ExtResource("8_kek77")
+info_ui = NodePath("../../../../InfoUI")
+
+[node name="ExportUI" type="ColorRect" parent="." node_paths=PackedStringArray("recorder", "save_forward_button", "save_backward_button")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7mycd")
+color = Color(0.11071999, 0.085200004, 0.12, 0.6666667)
+script = ExtResource("7_272bh")
+recorder = NodePath("../Main/Recorder")
+save_forward_button = NodePath("PanelContainer/VBoxContainer/SaveForwardButton")
+save_backward_button = NodePath("PanelContainer/VBoxContainer/SaveBackwardButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="ExportUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ExportUI/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("4_5vw27")
+theme_override_constants/separation = 24
+
+[node name="SaveForwardButton" type="Button" parent="ExportUI/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme = ExtResource("10_efxa6")
+theme_override_font_sizes/font_size = 42
+text = "Forward"
+icon = ExtResource("4_1bvp3")
+
+[node name="SaveBackwardButton" type="Button" parent="ExportUI/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_vertical = 2
+theme = ExtResource("10_efxa6")
+theme_override_font_sizes/font_size = 42
+text = "Backward"
+icon = ExtResource("4_1bvp3")
+
+[node name="HSeparator" type="HSeparator" parent="ExportUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_5vw27")
+
+[node name="CloseButton" type="Button" parent="ExportUI/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(202.675, 86.605)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Back"
+
+[node name="InfoUI" type="ColorRect" parent="." node_paths=PackedStringArray("version_label")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7mycd")
+color = Color(0.11071999, 0.085200004, 0.12, 0.6666667)
+script = ExtResource("10_4c57u")
+version_label = NodePath("PanelContainer/VBoxContainer/VersionLabel")
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="InfoUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoUI/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("4_5vw27")
+theme_override_constants/separation = 24
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InfoUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[i]Record Play Reverse[/i]
+
+
+A simple audio toy for recording sound, and playing it forward, or reversed.
+
+
+[i][b]
+[url=https://f-droid.org/packages/me.proton.echophenomena.recordplayreverse/]F-Droid[/url]
+
+[url=https://github.com/echo-lalia/recordplayreverse]Source code[/url]
+
+[url=https://github.com/echo-lalia/recordplayreverse/issues]Report an issue[/url]
+[/b][/i]"
+
+[node name="VersionLabel" type="Label" parent="InfoUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Version:"
+label_settings = SubResource("LabelSettings_4c57u")
+
+[node name="HSeparator" type="HSeparator" parent="InfoUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_5vw27")
+
+[node name="CloseButton" type="Button" parent="InfoUI/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(202.675, 86.605)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Back"
+
 [connection signal="pressed" from="Main/RecordButton" to="Main/Recorder" method="_on_record_button_pressed"]
 [connection signal="pressed" from="Main/PlayButton" to="Main/Recorder" method="_on_play_button_pressed"]
 [connection signal="pressed" from="Main/PlayReverseButton" to="Main/Recorder" method="_on_play_reverse_button_pressed"]
+[connection signal="pressed" from="Main/MarginContainer/BottomBar/ExportButton" to="Main/MarginContainer/BottomBar/ExportButton" method="_on_pressed"]
+[connection signal="pressed" from="Main/MarginContainer/BottomBar/InfoButton" to="Main/MarginContainer/BottomBar/InfoButton" method="_on_pressed"]
+[connection signal="pressed" from="ExportUI/PanelContainer/VBoxContainer/SaveForwardButton" to="ExportUI" method="_on_save_forward_button_pressed"]
+[connection signal="pressed" from="ExportUI/PanelContainer/VBoxContainer/SaveBackwardButton" to="ExportUI" method="_on_save_backward_button_pressed"]
+[connection signal="pressed" from="ExportUI/PanelContainer/VBoxContainer/CloseButton" to="ExportUI" method="_on_close_button_pressed"]
+[connection signal="meta_clicked" from="InfoUI/PanelContainer/VBoxContainer/RichTextLabel" to="InfoUI" method="_on_rich_text_label_meta_clicked"]
+[connection signal="pressed" from="InfoUI/PanelContainer/VBoxContainer/CloseButton" to="InfoUI" method="_on_close_button_pressed"]
